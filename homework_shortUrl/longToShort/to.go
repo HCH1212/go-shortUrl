@@ -1,4 +1,5 @@
 // 短链实现
+// id自增长算法实现短链
 package longtoshort
 
 import (
@@ -6,15 +7,17 @@ import (
 	"strings"
 )
 
+// 将长链接按字符分割成字符串数组
 func spilt(longUrl string) []string {
 	return strings.Split(longUrl, "") //将长链接按字符分割成字符串数组
 }
 
-// id自增长算法实现短链
+// 根据id和长链接生成短链接
 func autoShortUrl(id int, longUrl string) string {
 	return GetString62(Encode62(id, longUrl), longUrl) //根据id和长链接生成短链接
 }
 
+// 将id编码为一个62进制的数列，用于生成短链接
 func Encode62(id int, longUrl string) []int {
 	tempE := []int{} //存储编码结果的临时数组
 
@@ -25,6 +28,7 @@ func Encode62(id int, longUrl string) []int {
 	return tempE //返回编码结果
 }
 
+// 根据编码结果从长链接中取出对应的字符，拼接成短链接
 func GetString62(indexA []int, longUrl string) string {
 	res := "" //存储最终的短链接
 
